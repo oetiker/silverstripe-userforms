@@ -612,9 +612,15 @@ jQuery(function ($) {
 	 */
 	FormActions.prototype.update = function () {
 		var numberOfSteps = userform.steps.length,
-			stepID = userform.currentStep.id,
 			i, lastStep;
-
+			
+        // don't try to mess with steps that don't exist
+        if (!userform.currentStep){
+            return;
+        }
+        
+		var stepID = userform.currentStep.id;
+		
 		// Update the "Prev" button.
 		this.$el.find('.step-button-prev')[stepID === 0 ? 'hide' : 'show']();
 		
